@@ -19,10 +19,14 @@ get_latest_version() {
   local releases
   releases=$(curl -s "https://api.github.com/repos/$REPO/releases")
 
-  # Filter for non-prerelease, non-draft releases and get the first one
+  # Filter for non-prerelease, non-draft OpenCode releases (the repo also
+  # publishes other tags such as process-daemon-v*) and pick the highest
+  # version, since 1.x and 2.x patch releases are published interleaved
   echo "$releases" | jq -r '
-    [.[] | select(.prerelease == false and .draft == false)] |
-    .[0].tag_name // empty
+    [.[] | select(.prerelease == false and .draft == false)
+         | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))] |
+    sort_by(.tag_name | ltrimstr("v") | split(".") | map(tonumber)) |
+    last.tag_name // empty
   ' | sed 's/^v//'
 }
 
