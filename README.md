@@ -8,13 +8,11 @@ Supports `x86_64-linux`, `aarch64-linux`, `x86_64-darwin` and `aarch64-darwin`.
 
 ## Usage
 
-Replace `OWNER` with your GitHub username.
-
 ```nix
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    opencode-nix.url = "github:OWNER/opencode-nix";
+    opencode-nix.url = "github:aaryannemade/opencode-nix";
   };
 }
 ```
@@ -35,7 +33,7 @@ Or via the overlay (`opencode-nix.overlays.default`), which provides `pkgs.openc
 Try it without installing:
 
 ```sh
-nix run github:OWNER/opencode-nix
+nix run github:aaryannemade/opencode-nix
 ```
 
 ## Updating
@@ -52,3 +50,7 @@ nix develop
 ./update.sh           # check only
 ./update.sh --update  # write new version and hashes to version.json
 ```
+
+## License
+
+MIT. Based on [dominicnunez/opencode-nix](https://github.com/dominicnunez/opencode-nix); see `LICENSE`.
