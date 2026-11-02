@@ -1,0 +1,12 @@
+# Nix build output (symlink, not directory)
+result
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
